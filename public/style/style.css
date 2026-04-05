@@ -1,0 +1,83 @@
+:root {
+    --npp-blue: #1a3a5f;
+    --npp-accent: #007bff;
+    --npp-danger: #dc3545;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: #333;
+    background-color: #f8f9fa;
+    scroll-behavior: smooth;
+}
+
+/* Navbar */
+.navbar {
+    background-color: var(--npp-blue) !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+/* Hero Section */
+.hero-bg {
+    height: 60vh;
+    background: linear-gradient(rgba(26, 58, 95, 0.7), rgba(26, 58, 95, 0.7)), 
+                url('../img/img-1.jpg');
+    background-size: cover;
+    background-position: center;
+    border-bottom: 5px solid var(--npp-accent);
+}
+
+/* Заголовки */
+h2 {
+    color: var(--npp-blue);
+    font-weight: 700;
+    text-transform: uppercase;
+    border-left: 5px solid var(--npp-accent);
+    padding-left: 15px;
+    margin-bottom: 2rem;
+}
+
+/* Таблиця */
+.table-primary {
+    --bs-table-bg: var(--npp-blue);
+    --bs-table-color: white;
+}
+
+/* Картки моніторингу */
+.status-card {
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    border: 1px solid #dee2e6;
+}
+
+.status-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Секція аварій */
+.sticky-form {
+    position: sticky;
+    top: 100px;
+}
+
+#accidentsList .card {
+    border-left: 4px solid var(--npp-danger);
+    transition: transform 0.2s;
+}
+
+#accidentsList .card:hover {
+    transform: scale(1.01);
+}
+
+/* Утиліти */
+.shadow {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important;
+}
+
+.bg-light-danger {
+    background-color: #fff5f5 !important;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--npp-accent);
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.1);
+}
