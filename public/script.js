@@ -1,4 +1,4 @@
-// --- Параметри моніторингу BESS (ПР2) ---
+
 let soc = 80;               
 let current = 0;           
 let voltage = 720;          
@@ -27,14 +27,12 @@ function monitorBESS() {
 }
 
 function updateUI() {
-    // Числові значення
     document.getElementById('soc-val').innerText = soc.toFixed(1);
     document.getElementById('current-val').innerText = current.toFixed(0);
     document.getElementById('voltage-val').innerText = voltage.toFixed(1);
     document.getElementById('temp-val').innerText = temp.toFixed(1);
     document.getElementById('cycle-count').innerText = Math.floor(cycles);
 
-    // Прогноз розряду
     const forecastEl = document.getElementById('time-forecast');
     if (mode === 'discharge' && current < 0) {
         let hours = (soc / (Math.abs(current) / 10)).toFixed(1); 
@@ -43,24 +41,21 @@ function updateUI() {
         forecastEl.innerText = "--";
     }
 
-    // Перевірка діапазонів (Оновлена логіка)
     checkRange('soc', soc, 20, 95);
     checkRange('current', current, -400, 400);
     checkRange('voltage', voltage, 650, 800);
     checkRange('temp', temp, 20, 35);
 
-    // Прогрес-бар
     document.getElementById('soc-bar').style.width = soc + "%";
 }
 
-// Виправлена функція: міняє тільки колір рамки
 function checkRange(id, val, min, max) {
     const card = document.getElementById(`card-${id}`);
     if (val < min || val > max) {
-        card.style.borderColor = "#dc3545"; // Червоний
+        card.style.borderColor = "#dc3545"; 
         card.style.borderWidth = "2px";
     } else {
-        card.style.borderColor = "#198754"; // Зелений
+        card.style.borderColor = "#198754"; 
         card.style.borderWidth = "1px";
     }
 }
@@ -73,7 +68,6 @@ function setMode(newMode) {
     if (newMode === 'discharge') cycles += 0.01; 
 }
 
-// --- Робота з формою та сервером (ПР3) ---
 
 const form = document.getElementById('accidentForm');
 const listContainer = document.getElementById('accidentsList');
@@ -91,7 +85,7 @@ form.onsubmit = async (e) => {
         if (response.ok) {
             alert("Аварію успішно зареєстровано!");
             form.reset();
-            loadAccidents(); // Оновлюємо список після додавання
+            loadAccidents(); 
         }
     } catch (error) {
         console.error("Помилка відправки:", error);
@@ -103,7 +97,7 @@ async function loadAccidents() {
         const res = await fetch('/api/accidents');
         const data = await res.json();
         
-        listContainer.innerHTML = ''; // Очищуємо перед виводом
+        listContainer.innerHTML = ''; 
         
         if (data.length === 0) {
             listContainer.innerHTML = '<p class="text-muted">Записів поки немає.</p>';
@@ -135,6 +129,5 @@ async function loadAccidents() {
     }
 }
 
-// Ініціалізація
 monitorBESS();
 loadAccidents();
